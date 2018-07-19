@@ -6,13 +6,28 @@ import { Provider } from 'react-redux';
 import store from './store';
 import '../assets/css/styles.css';
 
-// templates
-import Guard from './Guard';
+// components
+import PrimaryHeader from './components/PrimaryHeader';
+import SecondaryHeader from './components/SecondaryHeader';
+
+// pages
+import Guard from './core/Guard';
+import Feedback from './core/Feedback';
+import Survey from './core/Survey';
 
 const routes = [
     {
         path: '/guard',
-        main: () => <Guard />
+        main: () => <Guard />,
+        header: () => <PrimaryHeader />
+    }, {
+        path: '/feedback',
+        main: () => <Feedback />,
+        header: () => <PrimaryHeader />
+    }, {
+        path: '/survey',
+        main: () => <Survey />,
+        header: () => <SecondaryHeader />
     },
     {
         path: '/',
@@ -25,6 +40,14 @@ const App = () => (
   <Router>
     <Provider store={store}>
       <main>
+        {routes.map((route, index) => (
+          <Route
+            key={index} // eslint-disable-line
+            path={route.path}
+            exact={route.exact}
+            render={route.header}
+          />
+        ))}
         {routes.map((route, index) => (
           <Route
             key={index} // eslint-disable-line
