@@ -1,7 +1,6 @@
 'use strict';
 
 const express = require('express');
-// const verifyToken = require('../utils').verifyToken;
 
 // routers
 const evalsRouter = require('./evaluations');
