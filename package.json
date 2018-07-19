@@ -1,0 +1,24 @@
+{
+  "name": "isd-course-eval",
+  "version": "1.0.0",
+  "description": "Interactive System Design Final Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kauffmanes/isd-course-eval.git"
+  },
+  "keywords": [
+    "pitt",
+    "react",
+    "nodejs"
+  ],
+  "author": "Emily Kauffman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kauffmanes/isd-course-eval/issues"
+  },
+  "homepage": "https://github.com/kauffmanes/isd-course-eval#readme"
+}
