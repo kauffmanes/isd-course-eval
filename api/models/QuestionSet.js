@@ -1,15 +1,15 @@
-/** Evaluation model */
+/** QuestionSet model */
 module.exports = (sequelize, DataTypes) => {
 
-	const Evaluation = sequelize.define('Evaluation', {
+	const QuestionSet = sequelize.define('QuestionSet', {
 		id: {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
 		},
 		name: { type: DataTypes.TEXT, allowNull: false, unique: true },
-		answers: { type: DataTypes.TEXT, allowNull: false }
+		questions: { type: DataTypes.TEXT, allowNull: false }
 	});
 
-	return Evaluation;
+	return QuestionSet;
 };
