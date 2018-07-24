@@ -9,6 +9,8 @@ import '../assets/css/styles.css';
 // components
 import PrimaryHeader from './components/PrimaryHeader';
 import SecondaryHeader from './components/SecondaryHeader';
+import PrimaryFooter from './components/PrimaryFooter';
+import SecondaryFooter from './components/SecondaryFooter';
 
 // pages
 import Guard from './core/Guard';
@@ -19,15 +21,18 @@ const routes = [
     {
         path: '/guard',
         main: () => <Guard />,
-        header: () => <PrimaryHeader />
+        header: () => <PrimaryHeader />,
+        footer: () => <PrimaryFooter />
     }, {
         path: '/feedback',
         main: () => <Feedback />,
-        header: () => <PrimaryHeader />
+        header: () => <PrimaryHeader />,
+        footer: () => <PrimaryFooter />
     }, {
         path: '/survey',
         main: () => <Survey />,
-        header: () => <SecondaryHeader />
+        header: () => <SecondaryHeader />,
+        footer: () => <SecondaryFooter />
     },
     {
         path: '/',
@@ -54,6 +59,14 @@ const App = () => (
             path={route.path}
             exact={route.exact}
             render={route.main}
+          />
+        ))}
+        {routes.map((route, index) => (
+          <Route
+            key={index} // eslint-disable-line
+            path={route.path}
+            exact={route.exact}
+            render={route.footer}
           />
         ))}
       </main>

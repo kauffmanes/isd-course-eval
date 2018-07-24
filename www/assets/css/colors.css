@@ -1,0 +1,26 @@
+:root {
+
+     /* reference: ttp://publichealth.pitt.edu/communications-tools */
+
+    /* b&W */
+    --white: #fff;
+
+    --black: #000;
+    --gray1: rgba(0,0,0,.1);
+    --gray2: rgba(0,0,0,.2);
+    --gray3: rgba(0,0,0,.3);
+    --gray5: rgba(0,0,0,.5);
+    --white3: rgba(255,255,255,.3);
+  
+    /* primary */
+    --Slate: #202124;
+    --PantherGold: #cdb87d;
+    --CathedralBlue: #1c2957;
+
+    /* secondary */
+    --Gold: #7a6c3b;
+    --Blue: #366ab3;
+    --Red: #cc2229;
+    --LightWhite: rgba(255, 255,255,.7);
+    
+  }

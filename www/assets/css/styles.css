@@ -1,3 +1,171 @@
-body {
-    background: rgba(0,0,0,.1);
+/** styles.css  - uses ITBEM methology **/
+
+/*** SETTINGS: used with preprocessors and contain font, colors definitions, etc. ***/
+@import url('colors.css');
+@import url('fonts.css');
+
+/*** GENERIC: reset and/or normalize styles, box-sizing definition, etc. This is the first layer which generates actual CSS. ***/
+@import url('reset.css');
+
+html {
+	box-sizing: border-box;
+	font-size: calc(16px + (18 - 16) * ((100vw - 400px) / (800 - 400)));
+	font-family: SourceSans, Tahoma, Geneva, Verdana, sans-serif;
+	color: var(--Slate);
 }
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+	cursor: var(--blackCursor);
+}
+
+*:focus {
+    border: dotted 2px var(--Blue);
+}
+
+/*** ELEMENTS: styling for bare HTML elements (like H1, A, etc.). These come with default styling from the browser so we can redefine them here. ***/
+main {
+    background: var(--gray1);
+    min-height: 100vh;
+}
+
+header {
+    background: var(--white);
+    height: 11vh;
+    padding: 2vh;
+}
+
+header img {
+    max-width: 300px;
+    vertical-align: middle;
+}
+
+article {
+    padding: 5vh 5vw;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+p {
+    font-weight: 400;
+    color: var(--gray5);
+    margin-bottom: 1rem;
+}
+
+button {
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    padding: 1rem;
+}
+
+input {
+    display: block;
+	font-size: 1rem;
+	border: solid 1px var(--gray3);
+	width: 100%;
+	margin-top: 0.5rem;
+	background: var(--white);
+    border-radius: 3px;
+    padding: 1rem;
+}
+
+input[placeholder] {
+    font-style: italic;
+    color: var(--gray5);
+}
+
+input[disabled],
+select[disabled],
+button[disabled] {
+	color: #ccc;
+	background: #f7f7f7;
+	cursor: not-allowed;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    padding: 1rem 1rem 0rem 1rem;
+}
+
+a, a:visited {
+    color: var(--PantherGold);
+    font-weight: bold;
+}
+
+a:hover, a:active, button {
+    cursor: pointer;
+}
+
+/*** OBJECTS: class-based selectors which define undecorated design patterns, for example media object known from OOCSS ***/
+.o-button--primary {
+    background: var(--CathedralBlue);
+    color: var(--white);
+}
+
+/*** COMPONENTS: specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components ***/
+.c-input--access {
+    margin-bottom: .75rem;
+}
+
+.c-input--access input {
+    margin-bottom: .5rem;
+}
+
+@media screen and (min-width: 450px) {
+    .c-input--access {
+        max-width: 50vw;
+        display: flex;
+    }
+
+    .c-input--access input {
+        flex: 1;
+        margin: 0;
+        margin-right: .25rem;
+    }
+
+    .c-input--access button {
+        max-width: fit-content;
+    }
+
+    /* .c-input--access button {
+    
+    } */
+}
+
+
+.c-footer--primary {
+    background: var(--black);
+    color: var(--LightWhite);
+    text-align: center;
+    font-size: .90rem;
+}
+
+.c-footer--primary p {
+    color: var(--LightWhite);
+    font-weight: 300;
+}
+
+.c-footer--secondary {
+    background: var(--white);
+}
+
+@media screen and (min-width: 450px) {
+    .c-footer--primary {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+/*** UTILITIES: utilities and helper classes with ability to override anything which goes before in the triangle, eg. hide helper class ***/

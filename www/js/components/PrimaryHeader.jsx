@@ -1,7 +1,9 @@
 import React from 'react';
 
 const PrimaryHeader = () => (
-    <h1>Primary Header here</h1>
+    <header>
+        <img src="../../../assets/img/pitt_logo.png" alt="the pitt logo" />
+    </header>
 );
 
 export default PrimaryHeader;

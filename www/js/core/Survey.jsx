@@ -16,7 +16,11 @@ class Survey extends Component {
     }
     render() {
         return (
-            <p>this is where the survey page for the courses go</p>
+            <article>
+                <h1>Survey title</h1>
+                <p>dislaimer info</p>
+                <p>survey here!</p>
+            </article>
         );
     }
 }
