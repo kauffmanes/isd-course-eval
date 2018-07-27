@@ -5,18 +5,43 @@ const express = require('express');
 const coursesRouter = express.Router();
 const models = require('../models');
 
-coursesRouter.post('/', (req, res) => {
+coursesRouter.get('/:courseId', (req, res) => {
 
-	if (!req.body.name) {
+	const id = req.params.courseId;
+
+	if (!id) {
 		return res.status(400).json({
 			status: 400,
-			statusText: 'A question set name is required.'
+			statusText: 'You are missing the cid.'
 		});
 	}
 
+	models.Course.find({
+		where: { id },
+		include: [models.Professor]
+	}).then((result) => {
+		return res.status(200).send(result);
+	}).catch(err => {
+		console.log(err);
+		return res.status(500).send('Unable to find course questions.');
+	})
+});
+
+coursesRouter.post('/', (req, res) => {
+
+	if (!req.body.name || !req.body.code || !req.body.questions) {
+		return res.status(400).json({
+			status: 400,
+			statusText: 'You are missing the name, course code, or question set.'
+		});
+	}
+
+	const questions = JSON.stringify(req.body.questions);
+
 	models.Course.create({
 		name: req.body.name,
-		questions: req.body.questions // must be stringfied
+		code: req.body.code,
+		questions: questions // must be stringfied
 	}).then(() => {
 		res.status(201).json({
 			status: 201,
@@ -26,15 +51,6 @@ coursesRouter.post('/', (req, res) => {
 		res.status(500).send(err);
 	});
 
-});
-
-coursesRouter.get('/', (req, res) => {
-	models.Course.findAll().then((questions) => {
-		res.status(200).send(questions);
-	}).catch(((err) => {
-		res.status(500).send(err);
-	}))
-	
 });
 
 module.exports = coursesRouter;

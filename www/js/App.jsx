@@ -18,27 +18,29 @@ import Feedback from './core/Feedback';
 import Survey from './core/Survey';
 
 const routes = [
-    {
-        path: '/guard',
-        main: () => <Guard />,
-        header: () => <PrimaryHeader />,
-        footer: () => <PrimaryFooter />
-    }, {
-        path: '/feedback',
-        main: () => <Feedback />,
-        header: () => <PrimaryHeader />,
-        footer: () => <PrimaryFooter />
-    }, {
-        path: '/survey',
-        main: () => <Survey />,
-        header: () => <SecondaryHeader />,
-        footer: () => <SecondaryFooter />
-    },
-    {
-        path: '/',
-        exact: true,
-        main: () => <Redirect to="/guard" />
-    }
+  {
+    path: '/guard',
+    main: () => <Guard />,
+    header: () => <PrimaryHeader />,
+    footer: () => <PrimaryFooter />
+  },
+  {
+    path: '/feedback',
+    main: () => <Feedback />,
+    header: () => <PrimaryHeader />,
+    footer: () => <PrimaryFooter />
+  },
+  {
+    path: '/survey',
+    main: () => <Survey />,
+    header: () => <SecondaryHeader />,
+    footer: () => <SecondaryFooter />
+  },
+  {
+    path: '/',
+    exact: true,
+    main: () => <Redirect to="/guard" />
+  }
 ];
 
 const App = () => (

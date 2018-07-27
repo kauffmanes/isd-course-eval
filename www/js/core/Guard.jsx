@@ -1,42 +1,89 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { func } from 'prop-types';
+
+import { updateCurrentCourse } from '../actionCreators';
 
 class Guard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            surveyRedirect: false,
-            accessCode: ''
-        };
-        this.validateInput = this.validateInput.bind(this);
-    }
+  static propTypes = {
+    handleUpdateCurrentCourse: func.isRequired
+  };
 
-    validateInput(val) {
-        if (val) {
-            // TODO - make service call to get the questions based on the access code here
-            // axios.get('/api/something');
+  constructor(props) {
+    super(props);
+    this.state = {
+      surveyRedirect: false,
+      accessCode: ''
+    };
+    this.validateInput = this.validateInput.bind(this);
+  }
+
+  validateInput() {
+    if (this.state.accessCode) {
+      axios
+        .post('/api/codes/authorize', {
+          accessCode: this.state.accessCode
+        })
+        .then(res => {
+
+          if (!res.data.id) {
+            this.setState({ errorMessage: 'No course found for that code.', accessCode: '' });
+          } else {
+            this.props.handleUpdateCurrentCourse(res.data);
+            window.localStorage.setItem('courseInstance', JSON.stringify(res.data));
             this.setState({ surveyRedirect: true });
-        }
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          this.setState({ errorMessage: err.response, accessCode: '' });
+        });
+    }
+  }
+
+  render() {
+    if (this.state.surveyRedirect) {
+      return <Redirect to="/survey" />;
     }
 
-    render() {
-        if (this.state.surveyRedirect) {
-            return <Redirect to='/survey' />
-        }
-
-        return (
-            <article>
-                <h1>Course Survey</h1>
-                <p>Enter the code provided to you by the survey admin or course professor.</p>
-                <form>
-                    <div className='c-input--access'>
-                        <input onChange={(evt) => { this.setState({ accessCode: evt.target.value })}} placeholder='abc123' type="password" id='accessCode' />
-                        <button disabled={!this.state.accessCode} className='o-button--primary' type='button' onClick={this.validateInput}>Continue</button>
-                    </div>
-                </form>
-            </article>
-        );
-    }
+    return (
+      <article>
+        <section className="c-guard">
+          <h1>Course Survey</h1>
+          <p>Enter the code provided to you by the survey admin or course professor.</p>
+          <form>
+            <div className="c-input--access">
+              <input
+                onChange={evt => {
+                  this.setState({ accessCode: evt.target.value, errorMessage: '' });
+                }}
+                value={this.state.accessCode}
+                type="password"
+                id="accessCode"
+              />
+              <button
+                disabled={!this.state.accessCode}
+                className="o-button--primary"
+                type="button"
+                onClick={this.validateInput}
+              >
+                Continue
+              </button>
+            </div>
+          </form>
+          {this.state.errorMessage}
+        </section>
+      </article>
+    );
+  }
 }
 
-export default Guard;
+const mapDispatchToProps = dispatch => ({
+  handleUpdateCurrentCourse: course => {
+    dispatch(updateCurrentCourse(course));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(Guard);

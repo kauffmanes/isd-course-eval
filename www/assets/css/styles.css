@@ -32,7 +32,6 @@ main {
 }
 
 header {
-    background: var(--white);
     height: 11vh;
     padding: 2vh;
 }
@@ -43,11 +42,11 @@ header img {
 }
 
 article {
-    padding: 5vh 5vw;
+    /* padding: 5vh 5vw; */
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 300;
     margin-bottom: 2rem;
 }
@@ -115,6 +114,44 @@ a:hover, a:active, button {
 }
 
 /*** COMPONENTS: specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components ***/
+.c-header--primary {
+    background: var(--white);
+}
+
+.c-header--secondary {
+    background: var(--CathedralBlue);
+}
+
+.c-guard {
+    padding: 5vh 5vw;
+}
+
+.c-course-info, .c-course-questions {
+    padding: 5vh 5vw 2.5vh 5vw;
+}
+
+.c-course-disclaimer {
+    padding: 2.5vh 5vw;
+    background: var(--Slate);
+    color: rgba(255,255,255,.6);
+    font-weight: 200;
+    font-size: .85rem;
+    line-height: 1.25rem;
+}
+
+.c-course-info__term {
+    text-transform: uppercase;
+}
+
+.c-course-info h1 {
+    margin: 2rem 0 .25rem 0;
+}
+
+.c-course-info__instructor {
+    font-weight: 500;
+    font-size: .8rem;
+}
+
 .c-input--access {
     margin-bottom: .75rem;
 }

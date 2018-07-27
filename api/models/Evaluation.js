@@ -7,9 +7,13 @@ module.exports = (sequelize, DataTypes) => {
 			primaryKey: true,
 			autoIncrement: true
 		},
-		name: { type: DataTypes.TEXT, allowNull: false, unique: true },
-		answers: { type: DataTypes.TEXT, allowNull: false }
+		answers: { type: DataTypes.TEXT, allowNull: false },
+		courseId: DataTypes.INTEGER
 	});
+
+	Evaluation.associate = models => {
+		models.Evaluation.belongsTo(models.Course, { foreignKey: 'courseId', targetId: 'id' });
+	};
 
 	return Evaluation;
 };

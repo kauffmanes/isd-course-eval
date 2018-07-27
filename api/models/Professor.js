@@ -7,8 +7,16 @@ module.exports = (sequelize, DataTypes) => {
 			primaryKey: true,
 			autoIncrement: true
 		},
-        name: { type: DataTypes.TEXT, allowNull: false, unique: true }
+		name: { type: DataTypes.TEXT, allowNull: false, unique: true },
+		title: { type: DataTypes.TEXT }
 	});
 
+	Professor.associate = models => {
+        models.Professor.belongsToMany(models.Course, {
+            through: { model: 'ProfessorCourses' },
+            foreignKey: 'pid'
+        });
+	};
+	
 	return Professor;
 };
