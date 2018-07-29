@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PrimaryFooter from '../components/PrimaryFooter';
 
 class Admin extends Component {
   constructor(props) {
@@ -10,30 +11,12 @@ class Admin extends Component {
 				error: null,
 				title: '',
 				code: ''
-        // courses: [],
-        // courseId: null
       }
 
       this.validate = this.validate.bind(this);
       this.submit = this.submit.bind(this);
-      this.onSelectCourse = this.onSelectCourse.bind(this);
 			this.handleTitleChange = this.handleTitleChange.bind(this);
 			this.handleCodeChange = this.handleCodeChange.bind(this);
-  }
-
-  // componentDidMount() {
-  //   axios.get('/api/courses').then(courses => {
-  //       this.setState({ courses: courses.data });
-  //   }).catch(err => {
-  //       console.log(err);
-  //   });
-  // }
-
-  onSelectCourse(evt) {
-      const courseId = evt.target.value;
-      if (courseId) {
-        this.setState({ courseId });
-      }
   }
 
   handleTitleChange(evt) {
@@ -74,15 +57,6 @@ class Admin extends Component {
         <h1>Admin Panel</h1>
         <section>
           <form>
-            {/* <label htmlFor="course">
-                Select the course:
-                <select name="courses" id="courses" onChange={this.onSelectCourse}>
-                    <option value="">-- select a course</option>
-                    {this.state.courses.map(course => (
-                        <option key={course.id} value={course.id}>{course.name}</option>
-                    ))}
-                </select>
-						</label> */}
 						<label htmlFor='code'>
                 Course code:
                 <input type="text" placeholder='Ex: TELECOM 2000' id='code' onChange={this.handleCodeChange} />
@@ -110,9 +84,9 @@ class Admin extends Component {
             >
               Submit
             </button>
-						{JSON.stringify(this.state)}
           </form>
         </section>
+        <PrimaryFooter />
       </article>
     );
   }

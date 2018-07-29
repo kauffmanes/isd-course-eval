@@ -28,39 +28,60 @@
     }, {
         "id": 7,
         "question": "What is your expected grade in the class?",
-        "type": "select"
+        "type": "select",
+        "options": [{
+            "id": 1,
+            "name": "A",
+            "value": "A"
+        }, {
+            "id": 2,
+            "name": "B",
+            "value": "B"
+        }, {
+            "id": 3,
+            "name": "C",
+            "value": "C"
+        }, {
+            "id": 4,
+            "name": "D",
+            "value": "D"
+        }, {
+            "id": 5,
+            "name": "F",
+            "value": "F"
+        }]
     }, {
         "id": 8,
         "question": "What is your class year?",
-        "type": "select"
-    }, {
-        "id": 9,
-        "question": "Did you enjoy this class?",
-        "type": "emotion",
+        "type": "select",
         "options": [{
             "id": 1,
             "name": "Freshman",
             "value": "freshman"
         }, {
-            "id": 1,
+            "id": 2,
             "name": "Sophomore",
             "value": "sophomore"
         }, {
-            "id": 1,
+            "id": 3,
             "name": "Junior",
             "value": "junior"
         }, {
-            "id": 1,
+            "id": 4,
             "name": "Senior",
             "value": "senior"
         }, {
-            "id": 1,
+            "id": 5,
             "name": "Graduate",
             "value": "graduate"
         }]
     }, {
+        "id": 9,
+        "question": "Did you enjoy this class?",
+        "type": "emotion"
+    }, {
         "id": 10,
         "question": "Any additional comments?",
-        "type": "emotion"
+        "type": "textarea"
     }]
 }

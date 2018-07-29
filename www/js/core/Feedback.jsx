@@ -1,5 +1,11 @@
 import React from 'react';
+import PrimaryFooter from '../components/PrimaryFooter';
 
-const Feedback = () => <p>this is where the feedback page for the courses go</p>;
+const Feedback = () => (
+    <article>
+        <p>Feedback goes here!</p>
+        <PrimaryFooter />
+    </article>
+);
 
 export default Feedback;

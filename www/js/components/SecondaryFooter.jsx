@@ -1,9 +1,14 @@
 import React from 'react';
+import { arrayOf, oneOfType, shape, string } from 'prop-types';
 
-const SecondaryFooter = () => (
+const SecondaryFooter = (props) => (
   <footer className="c-footer--secondary">
-    secondary footer
+    {props.children}
   </footer>
 );
+
+SecondaryFooter.propTypes = {
+  children: oneOfType([string, arrayOf(shape()), shape()]).isRequired
+};
 
 export default SecondaryFooter;

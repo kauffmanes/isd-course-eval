@@ -5,6 +5,7 @@ import { shape } from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 import SurveyQuestions from './SurveyQuestions';
+import SecondaryFooter from '../components/SecondaryFooter';
 
 class Survey extends Component {
   static propTypes = {
@@ -84,8 +85,10 @@ class Survey extends Component {
           </section>
           <section className="c-course-questions">
             <SurveyQuestions questions={this.state.questionSet.questions} />
-            questions go here
           </section>
+          <SecondaryFooter>
+            <button>hi</button>
+          </SecondaryFooter>
         </article>
       );
     }

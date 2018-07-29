@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { func } from 'prop-types';
+import PrimaryFooter from '../components/PrimaryFooter';
 
 import { updateCurrentCourse } from '../actionCreators';
 
@@ -74,6 +75,7 @@ class Guard extends Component {
           </form>
           {this.state.errorMessage}
         </section>
+        <PrimaryFooter />
       </article>
     );
   }

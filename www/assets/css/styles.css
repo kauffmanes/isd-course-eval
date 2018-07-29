@@ -42,7 +42,7 @@ header img {
 }
 
 article {
-    /* padding: 5vh 5vw; */
+    padding-bottom: 15vh;
 }
 
 h1 {
@@ -97,6 +97,16 @@ label {
     display: block;
 }
 
+select {
+    height: 2.6rem;
+    max-width: 500px;
+}
+
+textarea {
+    resize: none;
+    height: 8rem;
+}
+
 footer {
     position: fixed;
     bottom: 0;
@@ -130,7 +140,6 @@ a:hover, a:active, button {
 
 .c-page {
     padding: 5vh 5vw;
-    padding-bottom: 8vh;
 }
 
 .c-course-info, .c-course-questions {
