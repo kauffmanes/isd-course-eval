@@ -1,0 +1,66 @@
+{
+    "name": "Intro to Telecom",
+    "code": "TELECOM 2000",
+    "questions": [{
+        "id": 1,
+        "question": "Did you enjoy the class?",
+        "type": "emotion"
+    }, {
+        "id": 2,
+        "question": "Would you recommend this class to a friend?",
+        "type": "emotion"
+    }, {
+        "id": 3,
+        "question": "Did you enjoy making applets?",
+        "type": "emotion"
+    }, {
+        "id": 4,
+        "question": "Did Knowledge Tree contribute to your learning?",
+        "type": "emotion"
+    }, {
+        "id": 5,
+        "question": "Did the professor seem prepared and knowledgeable?",
+        "type": "emotion"
+    }, {
+        "id": 6,
+        "question": "Did the quizzes contribute to your learning?",
+        "type": "emotion"
+    }, {
+        "id": 7,
+        "question": "What is your expected grade in the class?",
+        "type": "select"
+    }, {
+        "id": 8,
+        "question": "What is your class year?",
+        "type": "select"
+    }, {
+        "id": 9,
+        "question": "Did you enjoy this class?",
+        "type": "emotion",
+        "options": [{
+            "id": 1,
+            "name": "Freshman",
+            "value": "freshman"
+        }, {
+            "id": 1,
+            "name": "Sophomore",
+            "value": "sophomore"
+        }, {
+            "id": 1,
+            "name": "Junior",
+            "value": "junior"
+        }, {
+            "id": 1,
+            "name": "Senior",
+            "value": "senior"
+        }, {
+            "id": 1,
+            "name": "Graduate",
+            "value": "graduate"
+        }]
+    }, {
+        "id": 10,
+        "question": "Any additional comments?",
+        "type": "emotion"
+    }]
+}

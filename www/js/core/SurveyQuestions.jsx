@@ -3,7 +3,11 @@ import { shape, arrayOf } from 'prop-types';
 
 const SurveyQuestions = props => (
   <div>
-    {props.questions.map(item => <p>{item.question}</p>)}
+    {props.questions.map(item => (
+      <label key={item.id} htmlFor={item.id}>
+        {item.question}
+      </label>
+    ))}
   </div>
 );
 

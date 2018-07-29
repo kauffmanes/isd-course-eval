@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { shape } from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-// import SurveyQuestions from './SurveyQuestions';
+import SurveyQuestions from './SurveyQuestions';
 
 class Survey extends Component {
   static propTypes = {
@@ -14,7 +14,7 @@ class Survey extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionSet: {},
+      course: { questions: [] },
       limit: 10,
       offset: 0,
       professor: { name: '', title: '' },
@@ -50,7 +50,8 @@ class Survey extends Component {
       })
       .then(response => {
         this.setState({
-          questionSet: (response && response.data) || {},
+          course: (response && response.data) || {},
+          questionSet: (response.data && response.data.questions && JSON.parse(response.data.questions)) || [],
           professor: (response && response.data && response.data.Professors && response.data.Professors[0]) || {}
         });
       })
@@ -63,28 +64,33 @@ class Survey extends Component {
   }
 
   render() {
+
     if (this.state.guardRedirect) {
       return <Redirect to="/guard" />;
     }
 
-    return (
-      <article>
-        <section className="c-course-info">
-          <small className="c-course-info__term">{`${this.state.courseInstance.semester} ${this.state.courseInstance.year}`}</small>
-          <h1>{`${this.state.questionSet.code} ${this.state.questionSet.name}`}</h1>
-          <p className="c-course-info__instructor">{`${this.state.professor.title} ${this.state.professor.name}`}</p>
-        </section>
-        <section className="c-course-disclaimer">
-          {
-            'This is an anonymous survey created to receive feedback from students in order to improve the quality of the class for future terms. Please be honest in your feedback.'
-          }
-        </section>
-        <section className="c-course-questions">
-          {/* <SurveyQuestions questions={JSON.parse(this.state.questionSet.questions)} /> */}
-          questions go here
-        </section>
-      </article>
-    );
+    if(this.state.course.questions.length > 0) {
+      return (
+        <article>
+          <section className="c-course-info">
+            <small className="c-course-info__term">{`${this.state.courseInstance.semester} ${this.state.courseInstance.year}`}</small>
+            <h1>{`${this.state.course.code} ${this.state.course.name}`}</h1>
+            <p className="c-course-info__instructor">{`${this.state.professor.title} ${this.state.professor.name}`}</p>
+          </section>
+          <section className="c-course-disclaimer">
+            {
+              'This is an anonymous survey created to receive feedback from students in order to improve the quality of the class for future terms. Please be honest in your feedback.'
+            }
+          </section>
+          <section className="c-course-questions">
+            <SurveyQuestions questions={this.state.questionSet.questions} />
+            questions go here
+          </section>
+        </article>
+      );
+    }
+    
+    return <p>Loading...</p>
   }
 }
 

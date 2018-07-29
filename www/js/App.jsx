@@ -16,6 +16,7 @@ import SecondaryFooter from './components/SecondaryFooter';
 import Guard from './core/Guard';
 import Feedback from './core/Feedback';
 import Survey from './core/Survey';
+import Admin from './core/Admin';
 
 const routes = [
   {
@@ -35,6 +36,12 @@ const routes = [
     main: () => <Survey />,
     header: () => <SecondaryHeader />,
     footer: () => <SecondaryFooter />
+  },
+  {
+    path: '/admin',
+    main: () => <Admin />,
+    header: () => <PrimaryHeader />,
+    footer: () => <PrimaryFooter />
   },
   {
     path: '/',

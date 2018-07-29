@@ -49,7 +49,7 @@ class Guard extends Component {
 
     return (
       <article>
-        <section className="c-guard">
+        <section className="c-page c-guard">
           <h1>Course Survey</h1>
           <p>Enter the code provided to you by the survey admin or course professor.</p>
           <form>
