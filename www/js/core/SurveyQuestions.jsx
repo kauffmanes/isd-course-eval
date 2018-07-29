@@ -1,11 +1,9 @@
 import React from 'react';
 import { shape, arrayOf } from 'prop-types';
 
-const SurveyQuestions = (props) => (
+const SurveyQuestions = props => (
   <div>
-    {props.questions.map(item => (
-      <p>{item.question}</p>
-    ))}
+    {props.questions.map(item => <p>{item.question}</p>)}
   </div>
 );
 

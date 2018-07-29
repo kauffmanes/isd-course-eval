@@ -27,7 +27,6 @@ class Guard extends Component {
           accessCode: this.state.accessCode
         })
         .then(res => {
-
           if (!res.data.id) {
             this.setState({ errorMessage: 'No course found for that code.', accessCode: '' });
           } else {

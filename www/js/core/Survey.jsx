@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { shape } from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
-import SurveyQuestions from './SurveyQuestions';
+// import SurveyQuestions from './SurveyQuestions';
 
 class Survey extends Component {
   static propTypes = {
@@ -51,11 +51,7 @@ class Survey extends Component {
       .then(response => {
         this.setState({
           questionSet: (response && response.data) || {},
-          professor: (response &&
-            response.data &&
-            response.data.Professors &&
-            response.data.Professors[0]) ||
-            {}
+          professor: (response && response.data && response.data.Professors && response.data.Professors[0]) || {}
         });
       })
       .catch(err => {
