@@ -16,12 +16,16 @@ class Survey extends Component {
     super(props);
     this.state = {
       course: { questions: [] },
-      limit: 10,
+      limit: 5,
       offset: 0,
       professor: { name: '', title: '' },
-      courseInstance: {}
+      courseInstance: {},
+      answers: [],
+      feedbackRedirect: false
     };
     this.fetchQuestions = this.fetchQuestions.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.submit = this.submit.bind(this);
   }
 
   componentDidMount() {
@@ -64,10 +68,49 @@ class Survey extends Component {
       });
   }
 
+  handleClick(questionId, value) {
+    const newQuestionSet = this.state.questionSet.questions
+      .map(item => {
+        const q = item;
+        if (q.id === questionId) {
+          q.answer = value;
+        }
+        return q;
+      });
+
+    this.setState({
+      questionSet: { ...this.state.questionSet, questions: newQuestionSet } });
+  }
+  
+  submit() {
+    this.setState({ submitting: true });
+    axios.post('/api/evaluations', {
+      answers: JSON.stringify(this.state.questionSet.questions),
+      courseId: this.state.course.id
+    }).then(res => {
+      console.log(res);
+      this.setState({
+        feedbackRedirect: true
+      });
+    }).catch(err => {
+      console.error(err);
+      this.setState({
+        errorState: true,
+        submitting: false
+      });
+    });
+  }
+
   render() {
 
     if (this.state.guardRedirect) {
       return <Redirect to="/guard" />;
+    }
+
+    if(this.state.feedbackRedirect) {
+      localStorage.removeItem('courseInstance');
+      localStorage.removeItem('currentUser');
+      return <Redirect to='/feedback' />;
     }
 
     if(this.state.course.questions.length > 0) {
@@ -79,16 +122,23 @@ class Survey extends Component {
             <p className="c-course-info__instructor">{`${this.state.professor.title} ${this.state.professor.name}`}</p>
           </section>
           <section className="c-course-disclaimer">
-            {
-              'This is an anonymous survey created to receive feedback from students in order to improve the quality of the class for future terms. Please be honest in your feedback.'
-            }
+            {'This is an anonymous survey created to receive feedback from students in order to improve the quality of the class for future terms. Please be honest in your feedback.'}
           </section>
+          {this.state.errorState ? <section className='c-error'><p>An unknown error occurred while submitting. Please try again later.</p></section> : ''}
           <section className="c-course-questions">
-            <SurveyQuestions questions={this.state.questionSet.questions} />
+            <SurveyQuestions questions={this.state.questionSet.questions.slice(this.state.offset, this.state.limit + this.state.offset)} handleClick={this.handleClick}/>
           </section>
           <SecondaryFooter>
-            <button>hi</button>
-          </SecondaryFooter>
+            {this.state.offset === 0 ?
+              <button className='o-button--back' onClick={() => this.setState({ guardRedirect: true })}>Cancel</button> :
+              <button className='o-button--back' onClick={() => this.setState({ offset: this.state.offset - this.state.limit })}>Previous</button>
+            }
+
+            {(this.state.questionSet.questions.length <= (this.state.limit + this.state.offset)) ?
+              <button className='o-button--primary' onClick={this.submit}>{this.state.submitting ? 'Submitting...' : 'Submit'}</button> :
+              <button className='o-button--primary' onClick={() => this.setState({ offset: this.state.offset + this.state.limit })}>Continue</button>
+            }
+              </SecondaryFooter>
         </article>
       );
     }
