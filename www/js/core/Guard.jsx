@@ -38,7 +38,7 @@ class Guard extends Component {
         })
         .catch(err => {
           console.log(err);
-          this.setState({ errorMessage: err.response, accessCode: '' });
+          this.setState({ errorMessage: err && err.response && err.response.data || 'Unknown error occurred', accessCode: '' });
         });
     }
   }

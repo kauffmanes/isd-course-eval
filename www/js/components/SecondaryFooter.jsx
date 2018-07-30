@@ -1,7 +1,7 @@
 import React from 'react';
 import { arrayOf, oneOfType, shape, string } from 'prop-types';
 
-const SecondaryFooter = (props) => (
+const SecondaryFooter = props => (
   <footer className="c-footer--secondary">
     {props.children}
   </footer>

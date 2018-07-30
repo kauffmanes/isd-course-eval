@@ -53,7 +53,7 @@ codesRouter.post('/authorize', (req, res) => {
 				return res.status(500).send(err);
 			});
 		} else {
-			return res.status(200).send({});
+			return res.status(404).send('No code was found, or the code provided was already used.');
 		}
 
 	}).catch(err => {

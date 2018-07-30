@@ -5,12 +5,14 @@ const express = require('express');
 const evalsRouter = express.Router();
 const models = require('../models');
 
-evalsRouter.post('/', (req, res) => {
+evalsRouter.post('/pcId/:pcId', (req, res) => {
 
-	if (!req.body.courseId || !req.body.answers) {
+	const _pcId = req.params.pcId;
+
+	if (!req.body.courseId || !req.body.answers || !_pcId) {
 		return res.status(400).json({
 			status: 400,
-			statusText: 'A course ID and set of answers is required.'
+			statusText: 'A pcId, course ID, and set of answers is required.'
 		});
 	}
 
@@ -18,9 +20,17 @@ evalsRouter.post('/', (req, res) => {
 		courseId: req.body.courseId,
 		answers: req.body.answers
 	}).then(() => {
-		return res.status(201).json({
-			status: 201,
-			statusText: `Evaluation set was created.`
+		models.CourseCode.update(
+			{ isDeleted: 1 },
+			{ where: { pcId: _pcId } })
+		.then(() => {
+			return res.status(201).json({
+				status: 201,
+				statusText: `Evaluation set was created.`
+			});
+		}).catch(err => {
+			console.log(err);
+			return res.status(400).send('Could not save survey. Access code not updated.');
 		});
 	}).catch((err) => {
 		console.log(err);
