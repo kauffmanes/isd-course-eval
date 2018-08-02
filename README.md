@@ -46,10 +46,10 @@ Some other requests:
 - POST http://localhost:3000/api/professors // creates a new professor
 - POST http://localhost:3000/api/professors/courses // adds a new course to a professor
 - POST http://localhost:3000/api/codes // creates a new access code
-  ```data: {
+  ````data: {
   	"accessCode": "abc123",
   	"pcId": 1
-  }```
+  }````
 
 - POST http://localhost:3000/api/codes/authorize // checks if a code is valid
 
