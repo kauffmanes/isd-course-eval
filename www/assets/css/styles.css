@@ -224,6 +224,19 @@ footer a {
 
     .c-error {
         background: darkred;
+    }
+
+    .c-error p {
+        color: white;
+        font-weight: 400;
+        padding: 1rem;
+    }
+
+    .c-success {
+        background: green;   
+    }
+
+    .c-success p {
         color: white;
         font-weight: bold;
         padding: 1rem;

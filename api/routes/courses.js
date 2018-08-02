@@ -67,7 +67,10 @@ coursesRouter.post('/', (req, res) => {
 			statusText: `Question '${req.body.name}' was created.`
 		});
 	}).catch((err) => {
-		res.status(500).send(err);
+		if (err.name === 'SequelizeUniqueConstraintError') {
+			return res.status(400).send(`The course code must be unique - ${req.body.code} is already taken.`);
+		}
+		return res.status(500).send(err);
 	});
 
 });

@@ -10,7 +10,10 @@ class Admin extends Component {
       valid: null,
       error: null,
       title: '',
-      code: ''
+      code: '',
+      successState: false,
+      errorState: false,
+      errorMessage: ''
     };
 
     this.validate = this.validate.bind(this);
@@ -45,19 +48,45 @@ class Admin extends Component {
         name: this.state.title,
         questions: this.state.questions
       })
-      .then(res => {
-        console.log(res);
+      .then(() => {
+        this.setState({
+          successState: true,
+          errorState: false
+        });
       })
       .catch(err => {
-        console.log(err);
+        if (err && err.response && err.response.data) {
+          this.setState({
+            errorMessage: err.response.data
+          });
+        } else {
+          this.setState({
+            errorMessage: 'Something went wrong. Please try again.'
+          });
+        }
+
+        this.setState({
+          errorState: true,
+          successState: false
+        });
       });
   }
 
   render() {
     return (
-      <article className="c-page">
-        <h1>Admin Panel</h1>
-        <section>
+      <article>
+        {this.state.errorState
+            ? <section className="c-error">
+                <p>{this.state.errorMessage}</p>
+              </section>
+            : ''}
+        {this.state.successState
+            ? <section className="c-success">
+                <p>The course was successfully saved.</p>
+              </section>
+            : ''}
+        <section className="c-page">
+          <h1>Admin Panel</h1>
           <form>
             <label htmlFor="code">
               Course code:
