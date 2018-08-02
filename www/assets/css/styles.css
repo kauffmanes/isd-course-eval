@@ -115,12 +115,16 @@ footer {
 }
 
 a, a:visited {
-    color: var(--PantherGold);
+    color: var(--CathedralBlue);
     font-weight: bold;
 }
 
 a:hover, a:active, button {
     cursor: pointer;
+}
+
+footer a {
+    color: var(--PantherGold);
 }
 
 /*** OBJECTS: class-based selectors which define undecorated design patterns, for example media object known from OOCSS ***/
@@ -132,6 +136,8 @@ a:hover, a:active, button {
 /*** COMPONENTS: specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components ***/
 .c-header--primary {
     background: var(--white);
+    height: 'auto';
+    box-shadow: 0 0 4px 0 var(--gray3);
 }
 
 .c-header--secondary {

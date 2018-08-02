@@ -63,7 +63,7 @@ class Guard extends Component {
                   this.setState({ accessCode: evt.target.value, errorMessage: '' });
                 }}
                 value={this.state.accessCode}
-                style={{marginRight: '0'}}
+                style={{ marginRight: '0' }}
                 type="password"
                 id="accessCode"
               />
